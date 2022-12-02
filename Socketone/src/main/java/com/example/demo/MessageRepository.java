@@ -10,6 +10,9 @@ public interface MessageRepository extends JpaRepository<Message, Long>{
 
 	@Query(value="Select count(*) from message where seen is null and sender_name=:senderName and receiver_name=:receiverName and status=1",nativeQuery=true)
 	String getunreadcount(String senderName, String receiverName);
+	
+	@Query(value="Select count(*) from message",nativeQuery=true)
+	String getcount();
 
 	@Transactional
 	@Modifying(clearAutomatically = true)

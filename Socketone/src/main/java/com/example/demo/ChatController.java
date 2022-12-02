@@ -39,4 +39,12 @@ public class ChatController {
     	messageRepository.updateseend(message.getSenderName(),message.getReceiverName());
         return message;
     }
+    
+    @MessageMapping("/count")
+    @SendTo("/chatroom/public")
+    public String receiveMessageCount(@Payload Message message){
+        return messageRepository.getcount();
+    }
+
+	  
 }

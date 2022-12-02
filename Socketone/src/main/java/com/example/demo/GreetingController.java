@@ -13,6 +13,9 @@ public class GreetingController {
 	 @Autowired
 	    private SimpMessagingTemplate simpMessagingTemplate;
 	 
+	 @Autowired
+	    private MessageRepository messageRepository;
+	 
 	 @MessageMapping("/hello")
 	  @SendTo("/user/greeting")
 	  public Greeting greetings(HelloMessage message) throws Exception {
@@ -26,4 +29,6 @@ public class GreetingController {
         simpMessagingTemplate.convertAndSendToUser(message.getSenderName(),"/greeting", message.getSenderName());
 	    return message.getMessage();
 	  }
+	  
+
 }
